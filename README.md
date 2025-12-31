@@ -1,9 +1,9 @@
-Módulo de Gestión de Asistentes IA
-Contexto
+# Módulo de Gestión de Asistentes IA
+## Contexto
 
 Funnelhot está desarrollando un sistema de asistentes IA para automatizar interacciones con leads. Este módulo permite gestionar asistentes, incluyendo creación, edición, eliminación y entrenamiento, con persistencia local.
 
-Objetivo
+## Objetivo
 
 Crear una aplicación web responsive usando Next.js con TypeScript que permita:
 
@@ -21,9 +21,9 @@ Página principal con listado de asistentes en tarjetas
 
 Modal de creación/edición en 2 pasos con validaciones
 
-Página de entrenamiento con:
+### Página de entrenamiento con:
 
-Área de prompts
+ Área de prompts
 
 Botón guardar con persistencia en localStorage
 
@@ -37,7 +37,7 @@ Componentes reutilizables en TypeScript
 
 Manejo de estados de carga y error claros
 
-Decisiones Técnicas
+# Decisiones Técnicas
 
 Framework: Next.js con App Router → permite rutas dinámicas y SSR si se requiere
 
@@ -55,10 +55,10 @@ Integración real con IA → se simula con respuestas predefinidas para cumplir 
 
 Testing unitario → priorizado funcionalidad y diseño responsive
 
-Datos de Ejemplo
+## Datos de Ejemplo
 Asistentes
 
-´´´
+```
 [
 {
 "id": "1",
@@ -79,11 +79,11 @@ Asistentes
 "rules": "Ayudas a resolver problemas técnicos..."
 }
 ]
-´´´
+```
 
-Respuestas simuladas
+## Respuestas simuladas
 
-´´´
+```
 [
 "Entendido, ¿en qué más puedo ayudarte?",
 "Esa es una excelente pregunta. Déjame explicarte...",
@@ -91,33 +91,33 @@ Respuestas simuladas
 "¿Podrías darme más detalles sobre tu consulta?",
 "Perfecto, he registrado esa información."
 ]
-´´´
+```
 
-Instrucciones para correr el proyecto
+# Instrucciones para correr el proyecto
 
-Clonar el repositorio
-´´´
+## Clonar el repositorio
+```
 git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_PROYECTO>
-´´´
+```
 
-Instalar dependencias
-´´´
+## Instalar dependencias
+```
 npm install
 
 o
 
 yarn install
-´´´
+```
 
-Correr la aplicación en modo desarrollo
-´´´
+## Correr la aplicación en modo desarrollo
+```
 npm run dev
 
 o
 
 yarn dev
-´´´
+```
 
 Abrir la aplicación en el navegador
 
@@ -134,7 +134,7 @@ Simular chat y revisar respuestas predefinidas
 Validaciones de formularios y pasos del modal
 
 Build para producción
-´´´
+```
 npm run build
 npm run start
 
@@ -142,18 +142,18 @@ o con yarn
 
 yarn build
 yarn start
-´´´
+```
 
 Estructura de Carpetas
 
-´´´
+```
 /app
 /components # Componentes reutilizables
 /pages # Páginas principales y rutas dinámicas
 /styles # Estilos globales y módulos CSS
 /data # Datos de ejemplo y JSON de respuestas
 /public # Archivos estáticos
-´´´
+```
 
 Tiempo aproximado de dedicación
 
