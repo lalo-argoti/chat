@@ -1,10 +1,37 @@
 @import "tailwindcss";
 
+/* =========================
+   Design Tokens (Base)
+   ========================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;          /* slate-50 */
+  --surface: #ffffff;
+  --foreground: #0f172a;          /* slate-900 */
+  --muted: #475569;               /* slate-600 */
+  --border: #e2e8f0;              /* slate-200 */
+  --primary: #2563eb;             /* blue-600 */
+  --primary-hover: #1d4ed8;       /* blue-700 */
+  --success: #16a34a;             /* green-600 */
+  --danger: #dc2626;              /* red-600 */
+  --warning: #d97706;             /* amber-600 */
 }
 
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #020617;        /* slate-950 */
+    --surface: #020617;
+    --foreground: #e5e7eb;        /* gray-200 */
+    --muted: #94a3b8;             /* slate-400 */
+    --border: #1e293b;            /* slate-800 */
+    --primary: #3b82f6;           /* blue-500 */
+    --primary-hover: #60a5fa;     /* blue-400 */
+  }
+}
+
+/* =========================
+   Tailwind theme bridge
+   ========================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,15 +39,117 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================
+   Base styles
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   Typography
+   ========================= */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.875rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* =========================
+   UI Primitives
+   ========================= */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* =========================
+   Forms
+   ========================= */
+input,
+select,
+textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  background-color: var(--surface);
+  color: var(--foreground);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* =========================
+   Accessibility
+   ========================= */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }

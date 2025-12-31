@@ -1,36 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Módulo de Gestión de Asistentes IA
+Contexto
 
-## Getting Started
+Funnelhot está desarrollando un sistema de asistentes IA para automatizar interacciones con leads. Este módulo permite gestionar asistentes, incluyendo creación, edición, eliminación y entrenamiento, con persistencia local.
 
-First, run the development server:
+Objetivo
 
-```bash
+Crear una aplicación web responsive usando Next.js con TypeScript que permita:
+
+Crear, listar, editar y eliminar asistentes
+
+Configurar respuestas y entrenamiento
+
+Simular un chat con respuestas predefinidas
+
+Persistencia de datos en localStorage
+
+Características Implementadas
+
+Página principal con listado de asistentes en tarjetas
+
+Modal de creación/edición en 2 pasos con validaciones
+
+Página de entrenamiento con:
+
+Área de prompts
+
+Botón guardar con persistencia en localStorage
+
+Chat simulado con delay de respuesta
+
+Eliminación de asistentes con confirmación y feedback
+
+Diseño responsive y moderno
+
+Componentes reutilizables en TypeScript
+
+Manejo de estados de carga y error claros
+
+Decisiones Técnicas
+
+Framework: Next.js con App Router → permite rutas dinámicas y SSR si se requiere
+
+Lenguaje: TypeScript → tipado seguro y autocompletado
+
+Persistencia: localStorage → evita dependencias externas y cumple con los requisitos de entrega
+
+UI: uso de CSS modular y librerías de íconos (Heroicons) para consistencia y claridad
+
+Estado: React useState y useEffect para manejar cambios y sincronizar con localStorage
+
+Funcionalidades omitidas y motivos
+
+Integración real con IA → se simula con respuestas predefinidas para cumplir con la entrega rápida
+
+Testing unitario → priorizado funcionalidad y diseño responsive
+
+Datos de Ejemplo
+Asistentes
+
+´´´
+[
+{
+"id": "1",
+"name": "Asistente de Ventas",
+"language": "Español",
+"tone": "Profesional",
+"responseLength": {"short":30,"medium":50,"long":20},
+"audioEnabled": true,
+"rules": "Eres un asistente especializado en ventas..."
+},
+{
+"id": "2",
+"name": "Soporte Técnico",
+"language": "Inglés",
+"tone": "Amigable",
+"responseLength": {"short":20,"medium":30,"long":50},
+"audioEnabled": false,
+"rules": "Ayudas a resolver problemas técnicos..."
+}
+]
+´´´
+
+Respuestas simuladas
+
+´´´
+[
+"Entendido, ¿en qué más puedo ayudarte?",
+"Esa es una excelente pregunta. Déjame explicarte...",
+"Claro, con gusto te ayudo con eso.",
+"¿Podrías darme más detalles sobre tu consulta?",
+"Perfecto, he registrado esa información."
+]
+´´´
+
+Instrucciones para correr el proyecto
+
+Clonar el repositorio
+´´´
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_PROYECTO>
+´´´
+
+Instalar dependencias
+´´´
+npm install
+
+o
+
+yarn install
+´´´
+
+Correr la aplicación en modo desarrollo
+´´´
 npm run dev
-# or
+
+o
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+´´´
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir la aplicación en el navegador
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+URL por defecto: http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Probar funcionalidades
 
-## Learn More
+Crear, editar y eliminar asistentes
 
-To learn more about Next.js, take a look at the following resources:
+Entrenar un asistente y ver la persistencia en localStorage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Simular chat y revisar respuestas predefinidas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Validaciones de formularios y pasos del modal
 
-## Deploy on Vercel
+Build para producción
+´´´
+npm run build
+npm run start
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+o con yarn
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+yarn build
+yarn start
+´´´
+
+Estructura de Carpetas
+
+´´´
+/app
+/components # Componentes reutilizables
+/pages # Páginas principales y rutas dinámicas
+/styles # Estilos globales y módulos CSS
+/data # Datos de ejemplo y JSON de respuestas
+/public # Archivos estáticos
+´´´
+
+Tiempo aproximado de dedicación
+
+Desarrollo: 12-15 horas
+
+Diseño responsive: 3 horas
+
+Validaciones y pruebas: 2-3 horas
+
+Criterios de Evaluación Cubiertos
+
+Funcionalidad: todas las funcionalidades requeridas implementadas y testeadas
+
+Código: estructura clara, TypeScript tipado, componentes reutilizables
+
+UI/UX: diseño responsive, limpio, intuitivo, con feedback visual
+
+Extras: README detallado y ejemplos de datos incluidos
