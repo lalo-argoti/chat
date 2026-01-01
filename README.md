@@ -55,6 +55,8 @@ Integración real con IA → se simula con respuestas predefinidas para cumplir 
 
 Testing unitario → priorizado funcionalidad y diseño responsive
 
+
+
 ## Datos de Ejemplo
 Asistentes
 
@@ -118,6 +120,13 @@ o
 
 yarn dev
 ```
+
+## Pruebas
+
+```
+node tests/endpoints.test.js
+```
+
 
 Abrir la aplicación en el navegador
 
