@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 export interface Assistant {
   id: string;
   name: string;
@@ -12,58 +15,52 @@ export interface Assistant {
   rules: string;
 }
 
-const STORAGE_KEY = 'assistants';
+const DATA_FILE = path.join(process.cwd(), 'data', 'assistants.json');
 
-/* =========================
-   CONTEXTO CLIENTE (BROWSER)
-   ========================= */
+/* ===== Helpers internos ===== */
 
-function getFromLocalStorage(): Assistant[] {
-  if (typeof window === 'undefined') return [];
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+function ensureDataFile() {
+  if (!fs.existsSync(DATA_FILE)) {
+    fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
+    fs.writeFileSync(
+      DATA_FILE,
+      JSON.stringify([], null, 2)
+    );
+  }
 }
 
-function saveToLocalStorage(data: Assistant[]) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+function readData(): Assistant[] {
+  ensureDataFile();
+  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
 }
 
-/* =========================
-   CONTEXTO SERVIDOR (API)
-   ========================= */
+function writeData(data: Assistant[]) {
+  fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
+  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+}
 
-let serverAssistants: Assistant[] = [];
-
-/* =========================
-   API UNIFICADA
-   ========================= */
+/* ===== API pública (EXPORTS) ===== */
 
 export function getAllAssistants(): Assistant[] {
-  if (typeof window === 'undefined') {
-    return serverAssistants;
-  }
-  return getFromLocalStorage();
+  return readData();
 }
 
 export function getAssistantById(id: string): Assistant | undefined {
-  return getAllAssistants().find(a => a.id === id);
+  return readData().find(a => a.id === id);
 }
 
 export function createAssistant(
   data: Omit<Assistant, 'id'>
 ): Assistant {
+  const assistants = readData();
+
   const assistant: Assistant = {
     id: Date.now().toString(),
     ...data,
   };
 
-  if (typeof window === 'undefined') {
-    serverAssistants.push(assistant);
-  } else {
-    const current = getFromLocalStorage();
-    current.push(assistant);
-    saveToLocalStorage(current);
-  }
+  assistants.push(assistant);
+  writeData(assistants);
 
   return assistant;
 }
@@ -72,28 +69,23 @@ export function updateAssistant(
   id: string,
   data: Partial<Assistant>
 ): Assistant | null {
-  const assistants = getAllAssistants();
+  const assistants = readData();
   const index = assistants.findIndex(a => a.id === id);
 
   if (index === -1) return null;
 
   assistants[index] = { ...assistants[index], ...data };
-
-  if (typeof window === 'undefined') {
-    serverAssistants = assistants;
-  } else {
-    saveToLocalStorage(assistants);
-  }
+  writeData(assistants);
 
   return assistants[index];
 }
 
-export function deleteAssistant(id: string): void {
-  const filtered = getAllAssistants().filter(a => a.id !== id);
+export function deleteAssistant(id: string): boolean {
+  const assistants = readData();
+  const filtered = assistants.filter(a => a.id !== id);
 
-  if (typeof window === 'undefined') {
-    serverAssistants = filtered;
-  } else {
-    saveToLocalStorage(filtered);
-  }
+  if (filtered.length === assistants.length) return false;
+
+  writeData(filtered);
+  return true;
 }

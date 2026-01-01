@@ -1,14 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import {
+  getAllAssistants,
+  createAssistant
+} from '@/lib/storage';
 
-let assistants = [];
+export const runtime = 'nodejs';
 
+/* ===== GET /api/assistants ===== */
 export async function GET() {
+  const assistants = getAllAssistants();
   return NextResponse.json(assistants);
 }
 
-export async function POST(req: NextRequest) {
-  const data = await req.json();
-  data.id = String(Date.now());
-  assistants.push(data);
-  return NextResponse.json(data, { status: 201 });
+/* ===== POST /api/assistants ===== */
+export async function POST(req: Request) {
+  const body = await req.json();
+  const assistant = createAssistant(body);
+  return NextResponse.json(assistant, { status: 201 });
 }
