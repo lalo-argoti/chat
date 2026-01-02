@@ -18,8 +18,8 @@ export default function AssistantForm({ onClose, onSave, initialData }: Props) {
   };
 
   const save = () => {
-    onSave({ name, language, tone });
-    onClose();
+    onSave({...initialData, name, language, tone });
+    
   };
 
   return (

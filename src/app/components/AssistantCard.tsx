@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 
-type Assistant = {
+export type Assistant = {
   id: string;
   name: string;
   language: string;
@@ -9,22 +10,47 @@ type Assistant = {
 
 type Props = {
   assistant: Assistant;
-  onEdit: (id: string) => void;
+  onEdit: (assistant: Assistant) => void;
   onDelete: (id: string) => void;
-  onTrain: (id: string) => void;
 };
 
-export default function AssistantCard({ assistant, onEdit, onDelete, onTrain }: Props) {
+export default function AssistantCard({
+  assistant,
+  onEdit,
+  onDelete,
+}: Props) {
   return (
-    <div className="card">
-      <h3>{assistant.name}</h3>
-      <p>Idioma: {assistant.language}</p>
-      <p>Tono: {assistant.tone}</p>
-      <div className="actions">
-        <button onClick={() => onEdit(assistant.id)}>Editar</button>
-        <button onClick={() => onDelete(assistant.id)}>Eliminar</button>
-        <button onClick={() => onTrain(assistant.id)}>Entrenar</button>
-      </div>
-    </div>
+    <article className="card" aria-label={`Asistente ${assistant.name}`}>
+      <header className="card-header">
+        <h3>{assistant.name}</h3>
+      </header>
+
+      <section className="card-meta">
+        <p>
+          <strong>Idioma:</strong> {assistant.language}
+        </p>
+        <p>
+          <strong>Tono:</strong> {assistant.tone}
+        </p>
+      </section>
+
+      <footer className="card-actions">
+        <button type="button" onClick={() => onEdit(assistant)}>
+          Editar
+        </button>
+
+        <Link href={`/${assistant.id}`}>
+          <button type="button">Entrenar</button>
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => onDelete(assistant.id)}
+          className="danger"
+        >
+          Eliminar
+        </button>
+      </footer>
+    </article>
   );
 }
