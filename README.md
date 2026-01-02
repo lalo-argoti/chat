@@ -99,7 +99,7 @@ Asistentes
 
 ## Clonar el repositorio
 ```
-git clone www.github.com/lalo-argoti/chat
+git clone https://www.github.com/lalo-argoti/chat
 cd chat
 ```
 
