@@ -99,8 +99,8 @@ Asistentes
 
 ## Clonar el repositorio
 ```
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_PROYECTO>
+git clone www.github.com/lalo-argoti/chat
+cd chat
 ```
 
 ## Instalar dependencias
