@@ -9,7 +9,6 @@ export const runtime = 'nodejs';
 /* ===== GET /api/assistants ===== */
 export async function GET() {
   const assistants = getAllAssistants();
-  console.log("CARD RENDER:", assistant);
 
   return NextResponse.json(assistants);
 }
