@@ -34,23 +34,30 @@ export default function AssistantCard({
         </p>
       </section>
 
-      <footer className="card-actions">
-        <button type="button" onClick={() => onEdit(assistant)}>
-          Editar
-        </button>
+<footer className="card-actions">
+  <button
+    type="button"
+    className="btn-secondary"
+    onClick={() => onEdit(assistant)}
+  >
+    Editar
+  </button>
 
-        <Link href={`/${assistant.id}`}>
-          <button type="button">Entrenar</button>
-        </Link>
+  <Link href={`/${assistant.id}`}>
+    <button type="button" className="btn-primary">
+      Entrenar
+    </button>
+  </Link>
 
-        <button
-          type="button"
-          onClick={() => onDelete(assistant.id)}
-          className="danger"
-        >
-          Eliminar
-        </button>
-      </footer>
+  <button
+    type="button"
+    className="btn-danger"
+    onClick={() => onDelete(assistant.id)}
+  >
+    Eliminar
+  </button>
+</footer>
+
     </article>
   );
 }
