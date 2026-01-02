@@ -9,6 +9,8 @@ export const runtime = 'nodejs';
 /* ===== GET /api/assistants ===== */
 export async function GET() {
   const assistants = getAllAssistants();
+  console.log("CARD RENDER:", assistant);
+
   return NextResponse.json(assistants);
 }
 
@@ -16,5 +18,6 @@ export async function GET() {
 export async function POST(req: Request) {
   const body = await req.json();
   const assistant = createAssistant(body);
+  
   return NextResponse.json(assistant, { status: 201 });
 }

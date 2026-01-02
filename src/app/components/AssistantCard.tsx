@@ -6,7 +6,14 @@ export type Assistant = {
   name: string;
   language: string;
   tone: string;
+  responseLength?: {
+    short: number;
+    medium: number;
+    long: number;
+  };
+  audioEnabled?: boolean;
 };
+
 
 type Props = {
   assistant: Assistant;
@@ -32,6 +39,19 @@ export default function AssistantCard({
         <p>
           <strong>Tono:</strong> {assistant.tone}
         </p>
+        {assistant.responseLength && (
+                    <p>
+                        <strong>Respuestas:</strong>{" "}
+                        C {assistant.responseLength.short}% ·
+                        M {assistant.responseLength.medium}% ·
+                        L {assistant.responseLength.long}%
+                    </p>
+                    )}
+
+                    <p>
+                    <strong>Audio:</strong>{" "}
+                    {assistant.audioEnabled ? "Habilitado" : "Deshabilitado"}
+                    </p>
       </section>
 
 <footer className="card-actions">
